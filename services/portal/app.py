@@ -253,12 +253,10 @@ def admin_compliance_report():
 
 
 @app.route("/health", methods=["GET"])
-def health() -> tuple[dict, int]:
-    """
-    Health check sencillo para el portal.
-    No toca Dynamo ni Lambda, solo confirma que la app está viva.
-    """
+def health():
+    """Health check sencillo para el portal."""
     return jsonify({"status": "ok"}), 200
+
 
 
 @app.route("/login", methods=["GET", "POST"])
