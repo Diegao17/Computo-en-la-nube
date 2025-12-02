@@ -3,6 +3,7 @@ import json
 from datetime import datetime, timezone
 import uuid
 from decimal import Decimal
+from typing import Optional 
 
 import boto3
 from boto3.dynamodb.conditions import Key, Attr
@@ -41,7 +42,7 @@ def _now_iso():
 def _put_audit_event(
     action: str,
     actor_id: str,
-    patient_id: str | None = None,
+    patient_id: Optional[str] = None,
     result_id: str | None = None,
     justification: str | None = None,
     break_glass: bool = False,
