@@ -43,8 +43,8 @@ def _put_audit_event(
     action: str,
     actor_id: str,
     patient_id: Optional[str] = None,
-    result_id: str | None = None,
-    justification: str | None = None,
+    result_id: Optional[str] = None,
+    justification: Optional[str] = None,
     break_glass: bool = False,
 ):
     """
