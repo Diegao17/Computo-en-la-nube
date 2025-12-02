@@ -1,0 +1,18 @@
+cat > .gitignore << 'EOF'
+# Ignorar carpetas de Terraform
+.terraform/
+**/.terraform/
+
+# Archivos de estado de Terraform locales (opcional si no quieres subirlos)
+*.tfstate
+*.tfstate.backup
+
+# Entornos virtuales de Python
+venv/
+**/venv/
+
+# Archivos temporales
+__pycache__/
+*.pyc
+.DS_Store
+EOF

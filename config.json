@@ -1,0 +1,4 @@
+{
+  "bucket_name": "healthcare-lab-lab-results-xqcn0m",
+  "dynamodb_table": "healthcare-lab-lab-results"
+}
