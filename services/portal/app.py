@@ -252,13 +252,13 @@ def admin_compliance_report():
     )
 
 
-@app.route("/health")
-def health():
-    _put_audit_event(
-        action="PORTAL_HEALTH",
-        actor_id="system_healthcheck",
-    )
-    return jsonify({"status": "ok", "service": "portal"}), 200
+@app.route("/health", methods=["GET"])
+def health() -> tuple[dict, int]:
+    """
+    Health check sencillo para el portal.
+    No toca Dynamo ni Lambda, solo confirma que la app está viva.
+    """
+    return jsonify({"status": "ok"}), 200
 
 
 @app.route("/login", methods=["GET", "POST"])
