@@ -74,15 +74,17 @@ resource "aws_cognito_user_pool_client" "labsecure_user_pool_client" {
 
   supported_identity_providers = ["COGNITO"]
 
+
   # Callbacks pensados para el portal. En producción
   # puedes cambiarlos por el dominio real / CloudFront.
-  callback_urls = [
-    "http://localhost:8080/callback",
+   callback_urls = [
+    "http://localhost:8080/auth/callback",
   ]
 
   logout_urls = [
-    "http://localhost:8080/",
+    "http://localhost:8080/logout",
   ]
+
 
   # Para JWT basados en OAuth2 / OpenID Connect
   explicit_auth_flows = [
@@ -92,13 +94,22 @@ resource "aws_cognito_user_pool_client" "labsecure_user_pool_client" {
   ]
 
   # Token lifetimes (demo razonable)
-  access_token_validity  = 60  # minutos
-  id_token_validity      = 60  # minutos
-  refresh_token_validity = 30  # días
+  access_token_validity  = 60 # minutos
+  id_token_validity      = 60 # minutos
+  refresh_token_validity = 30 # días
 
   token_validity_units {
     access_token  = "minutes"
     id_token      = "minutes"
     refresh_token = "days"
   }
+}
+
+########################################
+# Cognito User Pool Domain - Hosted UI
+########################################
+
+resource "aws_cognito_user_pool_domain" "labsecure_user_pool_domain" {
+  domain       = "${var.project_name}-auth"
+  user_pool_id = aws_cognito_user_pool.labsecure_user_pool.id
 }

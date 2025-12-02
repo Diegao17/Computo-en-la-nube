@@ -1,0 +1,22 @@
+{
+  "patient_id": "P123456",
+  "lab_id": "LAB001",
+  "lab_name": "Quest Diagnostics",
+  "test_type": "complete_blood_count",
+  "test_date": "2024-01-15T10:30:00Z",
+  "physician": {
+    "name": "Dr. Sarah Johnson",
+    "npi": "1234567890"
+  },
+  "results": [
+    {
+      "test_code": "WBC",
+      "test_name": "White Blood Cell Count",
+      "value": 7.5,
+      "unit": "10^3/uL",
+      "reference_range": "4.5-11.0",
+      "is_abnormal": false
+    }
+  ],
+  "notes": "Fasting sample. Patient reported no recent illness."
+}

@@ -46,3 +46,7 @@ output "ec2_worker_public_ip" {
   description = "IP pública de la instancia EC2 del worker"
   value       = aws_instance.worker.public_ip
 }
+
+output "cognito_user_pool_domain" {
+  value = aws_cognito_user_pool_domain.labsecure_user_pool_domain.domain
+}

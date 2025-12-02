@@ -4,9 +4,9 @@ resource "aws_iam_role" "lambda_report_role" {
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
     Statement = [{
-      Effect = "Allow",
+      Effect    = "Allow",
       Principal = { Service = "lambda.amazonaws.com" },
-      Action = "sts:AssumeRole"
+      Action    = "sts:AssumeRole"
     }]
   })
 }
@@ -37,8 +37,8 @@ resource "aws_iam_role_policy" "lambda_report_policy" {
 
       # S3 (guardar PDFs + leer PDFs)
       {
-        Effect = "Allow",
-        Action = ["s3:PutObject", "s3:GetObject"],
+        Effect   = "Allow",
+        Action   = ["s3:PutObject", "s3:GetObject"],
         Resource = "arn:aws:s3:::${var.raw_bucket_name}/*"
       }
     ]
@@ -53,14 +53,14 @@ resource "aws_lambda_function" "report" {
   handler       = "app.lambda_handler"
 
   # IMPORTANTE → RUTA ARREGLADA
-  filename         = "${path.module}/lambda/report.zip"
-  source_code_hash = filebase64sha256("${path.module}/lambda/report.zip")
+  filename         = "${path.module}/../lambda/report.zip"
+  source_code_hash = filebase64sha256("${path.module}/../lambda/report.zip")
 
   environment {
     variables = {
-      LAB_RESULTS_TABLE   = aws_dynamodb_table.lab_results.name
-      ACCESS_AUDIT_TABLE  = aws_dynamodb_table.access_audit.name
-      REPORTS_BUCKET      = var.raw_bucket_name
+      LAB_RESULTS_TABLE  = aws_dynamodb_table.lab_results.name
+      ACCESS_AUDIT_TABLE = aws_dynamodb_table.access_audit.name
+      REPORTS_BUCKET     = var.raw_bucket_name
     }
   }
 

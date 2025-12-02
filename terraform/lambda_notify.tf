@@ -69,8 +69,8 @@ resource "aws_lambda_function" "notify" {
   runtime       = "python3.11"
   handler       = "app.lambda_handler"
 
-filename         = "${path.module}/lambda/notify.zip"
-source_code_hash = filebase64sha256("${path.module}/lambda/notify.zip")
+  filename         = "${path.module}/../lambda/notify.zip"
+  source_code_hash = filebase64sha256("${path.module}/../lambda/notify.zip")
 
   environment {
     variables = {

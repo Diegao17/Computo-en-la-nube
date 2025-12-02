@@ -74,15 +74,15 @@ resource "aws_lambda_function" "data_lifecycle" {
   # IMPORTANTE: este zip lo generas tú con:
   #   cd lambda/data_lifecycle
   #   zip data_lifecycle.zip app.py
-  filename         = "${path.module}/lambda/data_lifecycle/data_lifecycle.zip"
-  source_code_hash = filebase64sha256("${path.module}/lambda/data_lifecycle/data_lifecycle.zip")
+  filename         = "${path.module}/../lambda/data_lifecycle/data_lifecycle.zip"
+  source_code_hash = filebase64sha256("${path.module}/../lambda/data_lifecycle.zip")
 
   handler = "app.lambda_handler"
   runtime = "python3.12"
 
-  role         = aws_iam_role.lambda_data_lifecycle_role.arn
-  timeout      = 300
-  memory_size  = 256
+  role          = aws_iam_role.lambda_data_lifecycle_role.arn
+  timeout       = 300
+  memory_size   = 256
   architectures = ["x86_64"]
 
   environment {
